@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<title>WebMap LP2B Pontianak</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/BatasAdministrasiPontianak_4.js"></script>
+        <script src="data/LP2BPontianak_5.js"></script>
+        <script src="data/SurveiLapangan_6.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-0.06857547390628177,109.24841267743854],[0.027173572605608286,109.40390791573822]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        var layer_OpenStreetMap_0 = L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_OpenStreetMap_0;
+        map.addLayer(layer_OpenStreetMap_0);
+        var layer_SatelitSaja_1 = L.tileLayer('http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_SatelitSaja_1;
+        map.addLayer(layer_SatelitSaja_1);
+        var layer_SatelitdanLabel_2 = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_SatelitdanLabel_2;
+        map.addLayer(layer_SatelitdanLabel_2);
+        var layer_PetaJalan_3 = L.tileLayer('http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}', {
+            opacity: 1.0,
+            attribution: '',
+        });
+        layer_PetaJalan_3;
+        map.addLayer(layer_PetaJalan_3);
+        function pop_BatasAdministrasiPontianak_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['KABUPATEN'] !== null ? Autolinker.link(String(feature.properties['KABUPATEN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['luas'] !== null ? Autolinker.link(String(feature.properties['luas'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BatasAdministrasiPontianak_4_0() {
+            return {
+                pane: 'pane_BatasAdministrasiPontianak_4',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(152,125,183,0.0)',
+            }
+        }
+        map.createPane('pane_BatasAdministrasiPontianak_4');
+        map.getPane('pane_BatasAdministrasiPontianak_4').style.zIndex = 404;
+        map.getPane('pane_BatasAdministrasiPontianak_4').style['mix-blend-mode'] = 'normal';
+        var layer_BatasAdministrasiPontianak_4 = new L.geoJson(json_BatasAdministrasiPontianak_4, {
+            attribution: '',
+            pane: 'pane_BatasAdministrasiPontianak_4',
+            onEachFeature: pop_BatasAdministrasiPontianak_4,
+            style: style_BatasAdministrasiPontianak_4_0,
+        });
+        bounds_group.addLayer(layer_BatasAdministrasiPontianak_4);
+        map.addLayer(layer_BatasAdministrasiPontianak_4);
+        function pop_LP2BPontianak_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>KET_PETA</strong><br />' + (feature.properties['KET_PETA'] !== null ? Autolinker.link(String(feature.properties['KET_PETA'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>KABUPATEN</strong><br />' + (feature.properties['KABUPATEN'] !== null ? Autolinker.link(String(feature.properties['KABUPATEN'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Luasan</strong><br />' + (feature.properties['Luasan'] !== null ? Autolinker.link(String(feature.properties['Luasan'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Gambar</strong><br />' + (feature.properties['Gambar'] !== null ? Autolinker.link(String(feature.properties['Gambar'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LP2BPontianak_5_0(feature) {
+            switch(String(feature.properties['KET_PETA'])) {
+                case 'Pertanian Tanaman Pangan':
+                    return {
+                pane: 'pane_LP2BPontianak_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,251,14,1.0)',
+            }
+                    break;
+                case 'Peruntukan Perkebunan':
+                    return {
+                pane: 'pane_LP2BPontianak_5',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,227,136,1.0)',
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_LP2BPontianak_5');
+        map.getPane('pane_LP2BPontianak_5').style.zIndex = 405;
+        map.getPane('pane_LP2BPontianak_5').style['mix-blend-mode'] = 'normal';
+        var layer_LP2BPontianak_5 = new L.geoJson(json_LP2BPontianak_5, {
+            attribution: '',
+            pane: 'pane_LP2BPontianak_5',
+            onEachFeature: pop_LP2BPontianak_5,
+            style: style_LP2BPontianak_5_0,
+        });
+        bounds_group.addLayer(layer_LP2BPontianak_5);
+        map.addLayer(layer_LP2BPontianak_5);
+        function pop_SurveiLapangan_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>F_CIL</strong><br />' + (feature.properties['F_CIL'] !== null ? Autolinker.link(String(feature.properties['F_CIL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nomer_BLAD</strong><br />' + (feature.properties['Nomer_BLAD'] !== null ? Autolinker.link(String(feature.properties['Nomer_BLAD'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Desa_atau</strong><br />' + (feature.properties['Desa_atau'] !== null ? Autolinker.link(String(feature.properties['Desa_atau'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Kecamatan</strong><br />' + (feature.properties['Kecamatan'] !== null ? Autolinker.link(String(feature.properties['Kecamatan'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Kabupaten</strong><br />' + (feature.properties['Kabupaten'] !== null ? Autolinker.link(String(feature.properties['Kabupaten'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tanggal_In</strong><br />' + (feature.properties['Tanggal_In'] !== null ? Autolinker.link(String(feature.properties['Tanggal_In'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Koordinat</strong><br />' + (feature.properties['Koordinat'] !== null ? Autolinker.link(String(feature.properties['Koordinat'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Koordina_1</strong><br />' + (feature.properties['Koordina_1'] !== null ? Autolinker.link(String(feature.properties['Koordina_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nama_Petug</strong><br />' + (feature.properties['Nama_Petug'] !== null ? Autolinker.link(String(feature.properties['Nama_Petug'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nama_Pet_1</strong><br />' + (feature.properties['Nama_Pet_1'] !== null ? Autolinker.link(String(feature.properties['Nama_Pet_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nama_Pet_2</strong><br />' + (feature.properties['Nama_Pet_2'] !== null ? Autolinker.link(String(feature.properties['Nama_Pet_2'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Nama_Pet_3</strong><br />' + (feature.properties['Nama_Pet_3'] !== null ? Autolinker.link(String(feature.properties['Nama_Pet_3'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Keterangan</strong><br />' + (feature.properties['Keterangan'] !== null ? Autolinker.link(String(feature.properties['Keterangan'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F__Q_Name1</strong><br />' + (feature.properties['F__Q_Name1'] !== null ? Autolinker.link(String(feature.properties['F__Q_Name1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>J_Tanam</strong><br />' + (feature.properties['J_Tanam'] !== null ? Autolinker.link(String(feature.properties['J_Tanam'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>S_Irigasi</strong><br />' + (feature.properties['S_Irigasi'] !== null ? Autolinker.link(String(feature.properties['S_Irigasi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N_Irigasi</strong><br />' + (feature.properties['N_Irigasi'] !== null ? Autolinker.link(String(feature.properties['N_Irigasi'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>INT_Tanam</strong><br />' + (feature.properties['INT_Tanam'] !== null ? Autolinker.link(String(feature.properties['INT_Tanam'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N_Intensit</strong><br />' + (feature.properties['N_Intensit'] !== null ? Autolinker.link(String(feature.properties['N_Intensit'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Reklas_CH</strong><br />' + (feature.properties['Reklas_CH'] !== null ? Autolinker.link(String(feature.properties['Reklas_CH'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N_CH</strong><br />' + (feature.properties['N_CH'] !== null ? Autolinker.link(String(feature.properties['N_CH'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Lereng</strong><br />' + (feature.properties['Lereng'] !== null ? Autolinker.link(String(feature.properties['Lereng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N_Lereng</strong><br />' + (feature.properties['N_Lereng'] !== null ? Autolinker.link(String(feature.properties['N_Lereng'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Tekstur</strong><br />' + (feature.properties['Tekstur'] !== null ? Autolinker.link(String(feature.properties['Tekstur'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N_Tekstur</strong><br />' + (feature.properties['N_Tekstur'] !== null ? Autolinker.link(String(feature.properties['N_Tekstur'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Bencana</strong><br />' + (feature.properties['Bencana'] !== null ? Autolinker.link(String(feature.properties['Bencana'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>N_Bencana</strong><br />' + (feature.properties['N_Bencana'] !== null ? Autolinker.link(String(feature.properties['N_Bencana'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Skoring</strong><br />' + (feature.properties['Skoring'] !== null ? Autolinker.link(String(feature.properties['Skoring'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Kelas</strong><br />' + (feature.properties['Kelas'] !== null ? Autolinker.link(String(feature.properties['Kelas'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RTRW</strong><br />' + (feature.properties['RTRW'] !== null ? Autolinker.link(String(feature.properties['RTRW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F_RTRW</strong><br />' + (feature.properties['F_RTRW'] !== null ? Autolinker.link(String(feature.properties['F_RTRW'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Kawasan_Hu</strong><br />' + (feature.properties['Kawasan_Hu'] !== null ? Autolinker.link(String(feature.properties['Kawasan_Hu'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F_Hutan</strong><br />' + (feature.properties['F_Hutan'] !== null ? Autolinker.link(String(feature.properties['F_Hutan'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Izin_PTP</strong><br />' + (feature.properties['Izin_PTP'] !== null ? Autolinker.link(String(feature.properties['Izin_PTP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F_Izin_PTP</strong><br />' + (feature.properties['F_Izin_PTP'] !== null ? Autolinker.link(String(feature.properties['F_Izin_PTP'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F_Izin_P_1</strong><br />' + (feature.properties['F_Izin_P_1'] !== null ? Autolinker.link(String(feature.properties['F_Izin_P_1'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>RPS</strong><br />' + (feature.properties['RPS'] !== null ? Autolinker.link(String(feature.properties['RPS'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F_Rencana</strong><br />' + (feature.properties['F_Rencana'] !== null ? Autolinker.link(String(feature.properties['F_Rencana'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>GUPT</strong><br />' + (feature.properties['GUPT'] !== null ? Autolinker.link(String(feature.properties['GUPT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>F_GUPT</strong><br />' + (feature.properties['F_GUPT'] !== null ? Autolinker.link(String(feature.properties['F_GUPT'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Usulan</strong><br />' + (feature.properties['Usulan'] !== null ? Autolinker.link(String(feature.properties['Usulan'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Gambar</strong><br />' + (feature.properties['Gambar'] !== null ? Autolinker.link(String(feature.properties['Gambar'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SurveiLapangan_6_0() {
+            return {
+                pane: 'pane_SurveiLapangan_6',
+                radius: 8.000000000000004,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(215,25,28,1.0)',
+            }
+        }
+        map.createPane('pane_SurveiLapangan_6');
+        map.getPane('pane_SurveiLapangan_6').style.zIndex = 406;
+        map.getPane('pane_SurveiLapangan_6').style['mix-blend-mode'] = 'normal';
+        var layer_SurveiLapangan_6 = new L.geoJson(json_SurveiLapangan_6, {
+            attribution: '',
+            pane: 'pane_SurveiLapangan_6',
+            onEachFeature: pop_SurveiLapangan_6,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_SurveiLapangan_6_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_SurveiLapangan_6);
+        map.addLayer(layer_SurveiLapangan_6);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/SurveiLapangan_6.png" /> Survei Lapangan': layer_SurveiLapangan_6,'LP2B Pontianak<br /><table><tr><td style="text-align: center;"><img src="legend/LP2BPontianak_5_PertanianTanamanPangan0.png" /></td><td>Pertanian Tanaman Pangan</td></tr><tr><td style="text-align: center;"><img src="legend/LP2BPontianak_5_PeruntukanPerkebunan1.png" /></td><td>Peruntukan Perkebunan</td></tr></table>': layer_LP2BPontianak_5,'<img src="legend/BatasAdministrasiPontianak_4.png" /> Batas Administrasi Pontianak': layer_BatasAdministrasiPontianak_4,"Peta Jalan": layer_PetaJalan_3,"Satelit dan Label": layer_SatelitdanLabel_2,"Satelit Saja": layer_SatelitSaja_1,"OpenStreetMap": layer_OpenStreetMap_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
