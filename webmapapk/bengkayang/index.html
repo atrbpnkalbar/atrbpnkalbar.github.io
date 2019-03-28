@@ -37,7 +37,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[0.22032114062271713,108.70458772575425],[1.6202931378467458,110.89450814988147]]);
+        }).fitBounds([[0.34577173651343374,108.52995032408406],[1.4020118068180278,110.18043379404608]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
@@ -93,13 +93,13 @@
         function pop_Lembar_Bengkayang_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['LABEL'] !== null ? Autolinker.link(String(feature.properties['LABEL'])) : '') + '</td>\
+                        <td colspan="2"><strong>LABEL</strong><br />' + (feature.properties['LABEL'] !== null ? Autolinker.link(String(feature.properties['LABEL'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['Lembar'] !== null ? Autolinker.link(String(feature.properties['Lembar'])) : '') + '</td>\
+                        <td colspan="2"><strong>Lembar</strong><br />' + (feature.properties['Lembar'] !== null ? Autolinker.link(String(feature.properties['Lembar'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['No_Lembar'] !== null ? Autolinker.link(String(feature.properties['No_Lembar'])) : '') + '</td>\
+                        <td colspan="2"><strong>No_Lembar</strong><br />' + (feature.properties['No_Lembar'] !== null ? Autolinker.link(String(feature.properties['No_Lembar'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -249,6 +249,29 @@
         var baseMaps = {};
         L.control.layers(baseMaps,{'<img src="legend/Bengkayang_BIG_5.png" /> Bengkayang_BIG': layer_Bengkayang_BIG_5,'<img src="legend/Bengkayang_DinasPertanian_4.png" /> Bengkayang_Dinas Pertanian': layer_Bengkayang_DinasPertanian_4,'<img src="legend/Lembar_Bengkayang_3.png" /> Lembar_Bengkayang': layer_Lembar_Bengkayang_3,'<img src="legend/BengkayangAdministrasi_2.png" /> Bengkayang Administrasi': layer_BengkayangAdministrasi_2,"Satelit dan Label": layer_SatelitdanLabel_1,"Satelit Saja": layer_SatelitSaja_0,}).addTo(map);
         setBounds();
+        var i = 0;
+        layer_Lembar_Bengkayang_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Lembar'] !== null?String('<div style="color: #01ffdd; font-size: 8pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Lembar']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Lembar_Bengkayang_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_LembarBengkayang_3]);
+        map.on("zoomend", function(){
+            resetLabels([layer_LembarBengkayang_3]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_LembarBengkayang_3]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_LembarBengkayang_3]);
+        });
         </script>
     </body>
 </html>
