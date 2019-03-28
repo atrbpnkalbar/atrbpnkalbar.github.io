@@ -31,12 +31,13 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="data/BengkayangAdministrasi_2.js"></script>
-        <script src="data/Bengkayang_DinasPertanian_3.js"></script>
-        <script src="data/Bengkayang_BIG_4.js"></script>
+        <script src="data/Lembar_Bengkayang_3.js"></script>
+        <script src="data/Bengkayang_DinasPertanian_4.js"></script>
+        <script src="data/Bengkayang_BIG_5.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[0.4060621921536612,108.77726747758985],[1.3162312505990674,110.25555274244218]]);
+        }).fitBounds([[0.22032114062271713,108.70458772575425],[1.6202931378467458,110.89450814988147]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
@@ -54,7 +55,6 @@
             attribution: '',
         });
         layer_SatelitdanLabel_1;
-        map.addLayer(layer_SatelitdanLabel_1);
         function pop_BengkayangAdministrasi_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -90,7 +90,45 @@
         });
         bounds_group.addLayer(layer_BengkayangAdministrasi_2);
         map.addLayer(layer_BengkayangAdministrasi_2);
-        function pop_Bengkayang_DinasPertanian_3(feature, layer) {
+        function pop_Lembar_Bengkayang_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['LABEL'] !== null ? Autolinker.link(String(feature.properties['LABEL'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Lembar'] !== null ? Autolinker.link(String(feature.properties['Lembar'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['No_Lembar'] !== null ? Autolinker.link(String(feature.properties['No_Lembar'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Lembar_Bengkayang_3_0() {
+            return {
+                pane: 'pane_Lembar_Bengkayang_3',
+                opacity: 1,
+                color: 'rgba(1,255,221,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+            }
+        }
+        map.createPane('pane_Lembar_Bengkayang_3');
+        map.getPane('pane_Lembar_Bengkayang_3').style.zIndex = 403;
+        map.getPane('pane_Lembar_Bengkayang_3').style['mix-blend-mode'] = 'normal';
+        var layer_Lembar_Bengkayang_3 = new L.geoJson(json_Lembar_Bengkayang_3, {
+            attribution: '',
+            pane: 'pane_Lembar_Bengkayang_3',
+            onEachFeature: pop_Lembar_Bengkayang_3,
+            style: style_Lembar_Bengkayang_3_0,
+        });
+        bounds_group.addLayer(layer_Lembar_Bengkayang_3);
+        map.addLayer(layer_Lembar_Bengkayang_3);
+        function pop_Bengkayang_DinasPertanian_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">OBJECTID</th>\
@@ -140,9 +178,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Bengkayang_DinasPertanian_3_0() {
+        function style_Bengkayang_DinasPertanian_4_0() {
             return {
-                pane: 'pane_Bengkayang_DinasPertanian_3',
+                pane: 'pane_Bengkayang_DinasPertanian_4',
                 opacity: 1,
                 color: 'rgba(255,14,203,1.0)',
                 dashArray: '',
@@ -152,38 +190,42 @@
                 fillOpacity: 0,
             }
         }
-        map.createPane('pane_Bengkayang_DinasPertanian_3');
-        map.getPane('pane_Bengkayang_DinasPertanian_3').style.zIndex = 403;
-        map.getPane('pane_Bengkayang_DinasPertanian_3').style['mix-blend-mode'] = 'normal';
-        var layer_Bengkayang_DinasPertanian_3 = new L.geoJson(json_Bengkayang_DinasPertanian_3, {
+        map.createPane('pane_Bengkayang_DinasPertanian_4');
+        map.getPane('pane_Bengkayang_DinasPertanian_4').style.zIndex = 404;
+        map.getPane('pane_Bengkayang_DinasPertanian_4').style['mix-blend-mode'] = 'normal';
+        var layer_Bengkayang_DinasPertanian_4 = new L.geoJson(json_Bengkayang_DinasPertanian_4, {
             attribution: '',
-            pane: 'pane_Bengkayang_DinasPertanian_3',
-            onEachFeature: pop_Bengkayang_DinasPertanian_3,
-            style: style_Bengkayang_DinasPertanian_3_0,
+            pane: 'pane_Bengkayang_DinasPertanian_4',
+            onEachFeature: pop_Bengkayang_DinasPertanian_4,
+            style: style_Bengkayang_DinasPertanian_4_0,
         });
-        bounds_group.addLayer(layer_Bengkayang_DinasPertanian_3);
-        map.addLayer(layer_Bengkayang_DinasPertanian_3);
-        function pop_Bengkayang_BIG_4(feature, layer) {
+        bounds_group.addLayer(layer_Bengkayang_DinasPertanian_4);
+        map.addLayer(layer_Bengkayang_DinasPertanian_4);
+        function pop_Bengkayang_BIG_5(feature, layer) {
             var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">KET_PETA</th>\
-                        <td>' + (feature.properties['KET_PETA'] !== null ? Autolinker.link(String(feature.properties['KET_PETA'])) : '') + '</td>\
-                    </tr>\
                     <tr>\
                         <th scope="row">KABUPATEN</th>\
                         <td>' + (feature.properties['KABUPATEN'] !== null ? Autolinker.link(String(feature.properties['KABUPATEN'])) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Luasan</th>\
-                        <td>' + (feature.properties['Luasan'] !== null ? Autolinker.link(String(feature.properties['Luasan'])) : '') + '</td>\
+                        <th scope="row">Luas_Ha</th>\
+                        <td>' + (feature.properties['Luas_Ha'] !== null ? Autolinker.link(String(feature.properties['Luas_Ha'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Qname_2018</th>\
+                        <td>' + (feature.properties['Qname_2018'] !== null ? Autolinker.link(String(feature.properties['Qname_2018'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Keterangan</th>\
+                        <td>' + (feature.properties['Keterangan'] !== null ? Autolinker.link(String(feature.properties['Keterangan'])) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Bengkayang_BIG_4_0() {
+        function style_Bengkayang_BIG_5_0() {
             return {
-                pane: 'pane_Bengkayang_BIG_4',
+                pane: 'pane_Bengkayang_BIG_5',
                 opacity: 1,
                 color: 'rgba(255,251,14,1.0)',
                 dashArray: '',
@@ -193,19 +235,19 @@
                 fillOpacity: 0,
             }
         }
-        map.createPane('pane_Bengkayang_BIG_4');
-        map.getPane('pane_Bengkayang_BIG_4').style.zIndex = 404;
-        map.getPane('pane_Bengkayang_BIG_4').style['mix-blend-mode'] = 'normal';
-        var layer_Bengkayang_BIG_4 = new L.geoJson(json_Bengkayang_BIG_4, {
+        map.createPane('pane_Bengkayang_BIG_5');
+        map.getPane('pane_Bengkayang_BIG_5').style.zIndex = 405;
+        map.getPane('pane_Bengkayang_BIG_5').style['mix-blend-mode'] = 'normal';
+        var layer_Bengkayang_BIG_5 = new L.geoJson(json_Bengkayang_BIG_5, {
             attribution: '',
-            pane: 'pane_Bengkayang_BIG_4',
-            onEachFeature: pop_Bengkayang_BIG_4,
-            style: style_Bengkayang_BIG_4_0,
+            pane: 'pane_Bengkayang_BIG_5',
+            onEachFeature: pop_Bengkayang_BIG_5,
+            style: style_Bengkayang_BIG_5_0,
         });
-        bounds_group.addLayer(layer_Bengkayang_BIG_4);
-        map.addLayer(layer_Bengkayang_BIG_4);
+        bounds_group.addLayer(layer_Bengkayang_BIG_5);
+        map.addLayer(layer_Bengkayang_BIG_5);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/Bengkayang_BIG_4.png" /> Bengkayang_BIG': layer_Bengkayang_BIG_4,'<img src="legend/Bengkayang_DinasPertanian_3.png" /> Bengkayang_Dinas Pertanian': layer_Bengkayang_DinasPertanian_3,'<img src="legend/BengkayangAdministrasi_2.png" /> Bengkayang Administrasi': layer_BengkayangAdministrasi_2,"Satelit dan Label": layer_SatelitdanLabel_1,"Satelit Saja": layer_SatelitSaja_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/Bengkayang_BIG_5.png" /> Bengkayang_BIG': layer_Bengkayang_BIG_5,'<img src="legend/Bengkayang_DinasPertanian_4.png" /> Bengkayang_Dinas Pertanian': layer_Bengkayang_DinasPertanian_4,'<img src="legend/Lembar_Bengkayang_3.png" /> Lembar_Bengkayang': layer_Lembar_Bengkayang_3,'<img src="legend/BengkayangAdministrasi_2.png" /> Bengkayang Administrasi': layer_BengkayangAdministrasi_2,"Satelit dan Label": layer_SatelitdanLabel_1,"Satelit Saja": layer_SatelitSaja_0,}).addTo(map);
         setBounds();
         </script>
     </body>
