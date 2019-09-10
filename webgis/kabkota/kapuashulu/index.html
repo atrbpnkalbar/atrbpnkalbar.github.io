@@ -31,29 +31,29 @@
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
         <script src="data/BatasAdministrasiKecamatan_2.js"></script>
-        <script src="data/Kapuas_Hulu_LP2B_3.js"></script>
+        <script src="data/KapuasHulu_LP2B_3.js"></script>
         <script src="data/TitikFoto_4.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[0.003348456322846456,111.46363218933006],[1.6512520850652104,114.27230048547014]]);
+        }).fitBounds([[0.12846347881546957,111.48664353056756],[1.1991434353432462,113.31139420454647]]);
         var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="http://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        map.attributionControl.setPrefix('<a href="http://kalbar.atrbpn.go.id" target="_blank">ATR/BPN  KALBAR  </a> &middot; <a href="https://lppbv2.atrbpn.go.id/lppb" title="A JS library for interactive maps">LP2B</a>');
         L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
-        var layer_SatelitSaja_0 = L.tileLayer('http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
+        var layer_CitraSaja_0 = L.tileLayer('http://mt0.google.com/vt/lyrs=s&hl=en&x={x}&y={y}&z={z}', {
             opacity: 1.0,
             attribution: '',
         });
-        layer_SatelitSaja_0;
-        map.addLayer(layer_SatelitSaja_0);
-        var layer_SatelitdanLabel_1 = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', {
+        layer_CitraSaja_0;
+        map.addLayer(layer_CitraSaja_0);
+        var layer_CitradanLabel_1 = L.tileLayer('http://mt0.google.com/vt/lyrs=y&hl=en&x={x}&y={y}&z={z}', {
             opacity: 1.0,
             attribution: '',
         });
-        layer_SatelitdanLabel_1;
+        layer_CitradanLabel_1;
         function pop_BatasAdministrasiKecamatan_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -86,7 +86,7 @@
         });
         bounds_group.addLayer(layer_BatasAdministrasiKecamatan_2);
         map.addLayer(layer_BatasAdministrasiKecamatan_2);
-        function pop_Kapuas_Hulu_LP2B_3(feature, layer) {
+        function pop_KapuasHulu_LP2B_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <th scope="row">Luas_Ha</th>\
@@ -132,9 +132,9 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_Kapuas_Hulu_LP2B_3_0() {
+        function style_KapuasHulu_LP2B_3_0() {
             return {
-                pane: 'pane_Kapuas_Hulu_LP2B_3',
+                pane: 'pane_KapuasHulu_LP2B_3',
                 opacity: 1,
                 color: 'rgba(255,251,14,1.0)',
                 dashArray: '',
@@ -144,17 +144,17 @@
                 fillOpacity: 0,
             }
         }
-        map.createPane('pane_Kapuas_Hulu_LP2B_3');
-        map.getPane('pane_Kapuas_Hulu_LP2B_3').style.zIndex = 403;
-        map.getPane('pane_Kapuas_Hulu_LP2B_3').style['mix-blend-mode'] = 'normal';
-        var layer_Kapuas_Hulu_LP2B_3 = new L.geoJson(json_Kapuas_Hulu_LP2B_3, {
+        map.createPane('pane_KapuasHulu_LP2B_3');
+        map.getPane('pane_KapuasHulu_LP2B_3').style.zIndex = 403;
+        map.getPane('pane_KapuasHulu_LP2B_3').style['mix-blend-mode'] = 'normal';
+        var layer_KapuasHulu_LP2B_3 = new L.geoJson(json_KapuasHulu_LP2B_3, {
             attribution: '',
-            pane: 'pane_Kapuas_Hulu_LP2B_3',
-            onEachFeature: pop_Kapuas_Hulu_LP2B_3,
-            style: style_Kapuas_Hulu_LP2B_3_0,
+            pane: 'pane_KapuasHulu_LP2B_3',
+            onEachFeature: pop_KapuasHulu_LP2B_3,
+            style: style_KapuasHulu_LP2B_3_0,
         });
-        bounds_group.addLayer(layer_Kapuas_Hulu_LP2B_3);
-        map.addLayer(layer_Kapuas_Hulu_LP2B_3);
+        bounds_group.addLayer(layer_KapuasHulu_LP2B_3);
+        map.addLayer(layer_KapuasHulu_LP2B_3);
         function pop_TitikFoto_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -175,7 +175,7 @@
         function style_TitikFoto_4_0() {
             return {
                 pane: 'pane_TitikFoto_4',
-                radius: 6.000000000000002,
+                radius: 6.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
                 dashArray: '',
@@ -205,7 +205,7 @@
         bounds_group.addLayer(layer_TitikFoto_4);
         map.addLayer(layer_TitikFoto_4);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/TitikFoto_4.png" /> Titik Foto': layer_TitikFoto_4,'<img src="legend/Kapuas_Hulu_LP2B_3.png" /> Kapuas_Hulu_LP2B': layer_Kapuas_Hulu_LP2B_3,'<img src="legend/BatasAdministrasiKecamatan_2.png" /> Batas Administrasi Kecamatan': layer_BatasAdministrasiKecamatan_2,"Satelit dan Label": layer_SatelitdanLabel_1,"Satelit Saja": layer_SatelitSaja_0,}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/TitikFoto_4.png" /> Titik Foto': layer_TitikFoto_4,'<img src="legend/KapuasHulu_LP2B_3.png" /> Kapuas Hulu_LP2B': layer_KapuasHulu_LP2B_3,'<img src="legend/BatasAdministrasiKecamatan_2.png" /> Batas Administrasi Kecamatan': layer_BatasAdministrasiKecamatan_2,"Citra dan Label": layer_CitradanLabel_1,"Citra Saja": layer_CitraSaja_0,}).addTo(map);
         setBounds();
         var i = 0;
         layer_BatasAdministrasiKecamatan_2.eachLayer(function(layer) {
